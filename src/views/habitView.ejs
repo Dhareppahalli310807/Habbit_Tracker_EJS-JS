@@ -1,0 +1,76 @@
+<h2>Habits View</h2>
+<div id="habits_container">
+  <%if(habits.length>0){%> <%habits.forEach(habit=>{%>
+  <div class="habit_div">
+    <p class="today">Today</p>
+    <p class="streak">
+      <i class="fa-solid fa-fire-flame-curved"></i> Streak:
+      <%=habit.habitId.streak%>
+    </p>
+    <button class="btn_delete" data-habit-id="<%= habit.habitId._id %>">
+      <i class="fa-solid fa-trash"></i>
+    </button>
+    <p class="habit_name"><%=habit.habitId.habitName%></p>
+    <p class="days">
+      <i class="fa-solid fa-calendar"></i>
+      <%=habit.habitId.daysCompleted%>/<%=habit.habitId.totalDays%> days
+    </p>
+    <%if(habit.status==='none'){%>
+    <p class="habit_status"><i class="fa-solid fa-hourglass"></i> None</p>
+    <%}else if(habit.status==='done'){%>
+    <p class="habit_status"><i class="fa-solid fa-check"></i>Done</p>
+
+    <%}else if(habit.status==='not done'){%>
+    <p class="habit_status"><i class="fa-solid fa-xmark"></i>Not Done</p>
+
+    <%}%>
+
+    <button
+      type="button"
+      class="btn_done"
+      data-habit-id="<%= habit.habitId._id %>"
+    >
+      Done <i class="fa-solid fa-check"></i>
+    </button>
+    <button
+      type="button"
+      class="btn_none"
+      data-habit-id="<%= habit.habitId._id %>"
+    >
+      None <i class="fa-solid fa-hourglass"></i>
+    </button>
+    <button
+      type="button"
+      class="btn_not_done"
+      data-habit-id="<%= habit.habitId._id %>"
+    >
+      Not Done <i class="fa-solid fa-xmark"></i>
+    </button>
+  </div>
+  <%})%> <%}else{%>
+  <p>No Habits yet</p>
+  <%}%>
+</div>
+<button id="add_habit" type="button">Add a habit</button>
+
+<div id="add_habit_form_div">
+  <div id="add_habit_heading">
+    <p>New Habit</p>
+    <button type="button" id="close">
+      <i class="fa-solid fa-circle-xmark"></i>
+    </button>
+  </div>
+
+  <form method="post" id="add_habit_form">
+    <input
+      type="text"
+      placeholder="Habit Name"
+      required
+      name="habitName"
+      id="add_habit_input"
+    />
+    <button type="submit" id="add">
+      <i class="fa-solid fa-square-plus"></i>
+    </button>
+  </form>
+</div>

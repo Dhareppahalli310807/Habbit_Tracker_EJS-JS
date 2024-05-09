@@ -44,7 +44,7 @@ npm run dev
 node server.js
 ```
 
-4. Open your web browser and go to http://localhost:3000 to view the application.
+4. Open your web browser and go to http://localhost:8080 to view the application.
 
 ## How to Use
 

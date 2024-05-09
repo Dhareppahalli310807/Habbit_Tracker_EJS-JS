@@ -1,0 +1,317 @@
+:root {
+    --font: 'Alata', sans-serif;
+    --navy: #0f4900;
+    --scarlet: #d62828;
+    --orange: #f77f00;
+    --yellow: #fcbf49;
+    --pale: #eae2b7;
+  }
+  * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    background-color: var(--pale);
+    font-family: var(--font);
+  }
+  
+  header {
+    background-color: var(--navy);
+    color: var(--orange);
+    display: flex;
+    /* padding: 1rem 3rem; */
+    height: 100px;
+    padding-inline: 3rem;
+    gap: 1rem;
+    align-items: center;
+    font-size: 1.5rem;
+    #views {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      a {
+        text-decoration: none;
+        color: inherit;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+  
+  main {
+    height: calc(100vh - 100px);
+    position: relative;
+    padding-bottom: 2rem;
+  }
+  h2 {
+    text-align: center;
+    background-color: var(--yellow);
+  
+    height: 50px;
+    line-height: 50px;
+  }
+  #habits_container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(364px, 1fr));
+    grid-template-rows: repeat(3, 200px);
+    padding: 2rem 4rem;
+    gap: 1rem;
+    height: calc(100% - 50px - 20px - 2rem);
+    overflow-y: auto;
+    .habit_div {
+      background-color: var(--navy);
+      color: var(--yellow);
+      padding: 1rem;
+      border-radius: 10px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: min-content 1fr min-content;
+      gap: 10px;
+      .today {
+        background-color: var(--yellow);
+        color: var(--navy);
+        border-radius: 20px;
+        width: min-content;
+        padding: 0.2rem 1rem;
+        font-weight: bold;
+      }
+      .streak {
+        justify-self: center;
+      }
+      .habit_name {
+        grid-column: 1/2;
+        margin-top: 10px;
+        width: 100%;
+        text-align: center;
+        text-transform: capitalize;
+      }
+      .days {
+        text-align: center;
+        margin-top: 10px;
+        i {
+          margin-right: 5px;
+        }
+      }
+      .habit_status {
+        grid-column: 3/4;
+        margin-top: 10px;
+        width: 100%;
+        text-align: center;
+        i {
+          margin-right: 5px;
+        }
+      }
+      .btn_done,
+      .btn_not_done,
+      .btn_none {
+        width: 100px;
+        height: 30px;
+        border: 2px solid var(--yellow);
+        border-radius: 10px;
+        color: var(--yellow);
+        background-color: transparent;
+        cursor: pointer;
+        font-family: inherit;
+        justify-self: center;
+        transition: all 0.3s ease-in-out;
+        &:hover {
+          background-color: var(--yellow);
+          color: var(--navy);
+        }
+      }
+      .btn_delete {
+        background-color: transparent;
+        color: var(--scarlet);
+        grid-column: 3/4;
+        justify-self: flex-end;
+        border: none;
+        cursor: pointer;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        transition: all 0.3s ease-in-out;
+        &:hover {
+          color: var(--navy);
+          background-color: var(--scarlet);
+        }
+      }
+    }
+  }
+  
+  #add_habit {
+    border: none;
+    background-color: var(--scarlet);
+    color: var(--pale);
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    margin: 0 auto;
+    display: block;
+    margin-top: 0.5rem;
+  }
+  
+  #add_habit_form_div {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    z-index: 10;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    background-color: var(--orange);
+    padding: 1rem;
+    border-radius: 10px;
+    gap: 2rem;
+    transition: all 0.3s ease-in-out;
+    #add_habit_heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      p {
+        font-size: 1.5rem;
+      }
+      #close {
+        background-color: transparent;
+        cursor: pointer;
+        border: none;
+        font-size: 2rem;
+      }
+    }
+  
+    #add_habit_form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      #add_habit_input {
+        border: none;
+        background-color: var(--pale);
+        color: black;
+        font: inherit;
+        padding: 0.5rem;
+        border-radius: 10px;
+        width: 300px;
+      }
+      #add {
+        background-color: transparent;
+        border: none;
+        font-size: 2rem;
+        cursor: pointer;
+      }
+    }
+  }
+  #calendar_container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+    grid-template-rows: repeat(3, 200px);
+    padding: 2rem 4rem;
+    gap: 1rem;
+    height: calc(100% - 50px);
+    overflow-y: auto;
+    position: relative;
+    .calendar_div {
+      background-color: var(--navy);
+      color: var(--yellow);
+      padding: 1rem;
+      border-radius: 10px;
+      .habit_name {
+        font-size: 1.2rem;
+        text-transform: capitalize;
+      }
+      .week_div {
+        display: flex;
+        flex-direction: row;
+        margin-top: 20px;
+        gap: 10px;
+        .day_div {
+          flex-grow: 1;
+          height: 100px;
+          border: 2px solid var(--yellow);
+          padding: 0.5rem;
+          border-radius: 10px;
+          transition: all 0.5s ease-in-out;
+          background-image: linear-gradient(
+            -225deg,
+            var(--yellow) 50%,
+            var(--navy) 50%
+          );
+          background-size: 300%;
+          background-position: 100% 100%;
+          font-family: inherit;
+          color: inherit;
+          cursor: pointer;
+          font-size: 1rem;
+          i {
+            margin-top: 5px;
+          }
+          &:hover {
+            background-position: 0% 0%;
+            color: var(--navy);
+          }
+        }
+      }
+    }
+  }
+  #update_habit_status_div {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    z-index: 10;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    background-color: var(--orange);
+    padding: 1rem;
+    border-radius: 10px;
+    gap: 2rem;
+    transition: all 0.3s ease-in-out;
+    width: 300px;
+    #update_habit_heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      p {
+        font-size: 1.5rem;
+      }
+      #update_close {
+        background-color: transparent;
+        cursor: pointer;
+        border: none;
+        font-size: 2rem;
+      }
+    }
+    #status_div {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      button {
+        font-size: 1rem;
+        font-family: inherit;
+        cursor: pointer;
+        border: none;
+        background-color: var(--yellow);
+        border-radius: 10px;
+        padding-block: 0.5rem;
+        color: var(--navy);
+        transition: all 0.3s ease-in-out;
+        &:hover {
+          background-color: var(--navy);
+          color: var(--yellow);
+        }
+        i {
+          margin-left: 5px;
+        }
+      }
+    }
+  }
+  

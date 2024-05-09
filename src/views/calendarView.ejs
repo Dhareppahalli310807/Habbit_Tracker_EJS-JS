@@ -1,0 +1,46 @@
+<h2>Calendar View</h2>
+<div id="calendar_container">
+  <%if(habits.length>0){%> <%habits.forEach(habit=>{%>
+  <div class="calendar_div">
+    <p class="habit_name"><%=habit.habit.habitName%></p>
+    <div class="week_div">
+      <%habit.habitStatus.forEach(hs=>{%>
+      <button class="day_div" type="button" data-habit-status-id="<%=hs._id%>">
+        <p><%= moment(hs.date).format('DD ddd') %></p>
+        <%if(hs.status==='none'){%>
+        <p class="habit_status"><i class="fa-solid fa-hourglass"></i></p>
+        <%}else if(hs.status==='done'){%>
+        <p class="habit_status"><i class="fa-solid fa-check"></i></p>
+
+        <%}else if(hs.status==='not done'){%>
+        <p class="habit_status"><i class="fa-solid fa-xmark"></i></p>
+
+        <%}%>
+      </button>
+      <%})%>
+    </div>
+  </div>
+  <%})%> <%}else{%>
+  <p>No Habits yet</p>
+  <%}%>
+</div>
+
+<div id="update_habit_status_div">
+  <div id="update_habit_heading">
+    <p>Change Status</p>
+    <button type="button" id="update_close">
+      <i class="fa-solid fa-circle-xmark"></i>
+    </button>
+  </div>
+  <div id="status_div">
+    <button type="button" id="update_done">
+      Done <i class="fa-solid fa-check"></i>
+    </button>
+    <button type="button" id="update_not_done">
+      Not Done <i class="fa-solid fa-xmark"></i>
+    </button>
+    <button type="button" id="update_none">
+      None <i class="fa-solid fa-hourglass"></i>
+    </button>
+  </div>
+</div>
